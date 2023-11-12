@@ -70,6 +70,7 @@ public class ChatController {
             try {
                 JSONObject json = (JSONObject)jsonparser.parse(jsonString);
                 JSONArray bubblesArray = (JSONArray)json.get("bubbles");
+                System.out.println("bubblesArray : " + bubblesArray);
                 JSONObject bubbles = (JSONObject)bubblesArray.get(0);
                 JSONObject data = (JSONObject)bubbles.get("data");
                 String description = "";
