@@ -19,6 +19,7 @@ function connect() {
     stompClient.connect({}, function (frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
+        stompClient.send("/app/sendMessage", {}, JSON.stringify("welcome")); //서버에 보낼 메시지
         stompClient.subscribe('/topic/public', function (message) {
             showMessage("받은 메시지: " + message.body); //서버에 메시지 전달 후 리턴받는 메시지
             console.log("message : ", message);
@@ -39,6 +40,7 @@ function sendMessage() {
     showMessage("보낸 메시지: " + message);
 
     stompClient.send("/app/sendMessage", {}, JSON.stringify(message)); //서버에 보낼 메시지
+    $("#msg").val(""); // 입력 필드 초기화
 }
 
 function showMessage(message) {

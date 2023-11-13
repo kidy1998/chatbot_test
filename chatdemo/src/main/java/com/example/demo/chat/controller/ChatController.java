@@ -24,10 +24,10 @@ import org.springframework.stereotype.Controller;
 public class ChatController {
 	
 
-    private static String secretKey = "d29FeFNFRUhsS1ZiS0VlTHRwYnhCWGFDVUpjY01OVks=";
-    private static String apiUrl = "https://hka7rtv9vb.apigw.ntruss.com/custom/v1/12367/b06a6b36e8b12080ec5e260ec8364645bab668c04143d6f4b9930c0129b39906";
+    private static String secretKey = "dWR2Z2dnUXNCdEhIVGNLZFFqZk9lcGRjeE5jaXBvTkw=";
+    private static String apiUrl = "https://hka7rtv9vb.apigw.ntruss.com/custom/v1/12376/1d79a89c45fae84201b84eb0bfc5c7d7eef70523187c561da74741150e731c40";
    
-
+    
     @MessageMapping("/sendMessage")
     @SendTo("/topic/public")
     public String sendMessage(@Payload String chatMessage) throws IOException
