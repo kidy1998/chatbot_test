@@ -33,6 +33,7 @@ function disconnect() {
     }
     setConnected(false);
     console.log("Disconnected");
+    $("#communicate").empty(); // 자식 요소 제거
 }
 
 function sendMessage() {
