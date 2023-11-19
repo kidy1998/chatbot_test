@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +7,14 @@
    
 </head>
 <body>
-    <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
-    enabled. Please enable
-    Javascript and reload this page!</h2></noscript>
+   
+
 	<div id="main-content" class="container">
 	    <div class="row">
 	        <div class="col-md-6">
 	            <form class="form-inline">
 	                <div class="form-group">
-	                    <label for="connect">웹소켓 연결:</label>
-	                    <button id="connect" class="btn btn-default" type="submit">연결</button>
-	                    <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">해제
+	                    <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">연결해제
 	                    </button>
 	                </div>
 	            </form>
@@ -27,19 +24,16 @@
 	                <div class="form-group">
 	                    <label for="msg">문의사항</label>
 	                    <input type="text" id="msg" class="form-control" placeholder="내용을 입력하세요....">
+						<button id="send" class="sendButton" disabled type="submit">보내기</button>
 	                </div>
-	                <button id="send" class="btn btn-default" disabled type="submit">보내기</button>
+	                
 	            </form>
 	        </div>
 	    </div>
 	    <div class="row">
 	        <div class="col-md-12">
 	            <table id="conversation" class="table table-striped">
-	                <thead>
-	                <tr>
-	                    <th>메세지</th>
-	                </tr>
-	                </thead>
+					<br>
 	                <tbody id="communicate">
 	                </tbody>
 	            </table>
@@ -47,6 +41,7 @@
 	    </div>
 	</div>
 
+	<button id="connect" class="connectButton" type="submit"><img th:src="@{/images/챗봇.png}" alt=""></button>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
