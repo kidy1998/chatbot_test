@@ -17,7 +17,7 @@ function setConnected(connected) {
 
 function connect() {
 
-    const mainContent = document.getElementById('main-content');
+    const mainContent = document.getElementById('main-container');
     mainContent.style.visibility = 'visible';
     document.getElementById('msg').focus();
     var socket = new SockJS('/ws');
@@ -27,7 +27,12 @@ function connect() {
         console.log('Connected: ' + frame);
         stompClient.send("/app/sendMessage", {}, JSON.stringify("welcome")); //서버에 보낼 메시지
         stompClient.subscribe('/topic/public', function (message) {
-            showMessage("받은 메시지: " + message.body); //서버에 메시지 전달 후 리턴받는 메시지
+
+            var descriptionArray = JSON.parse(message.body);
+            
+           for (var i = 0; i < descriptionArray.length; i++) {
+            showMessage("받은 메시지: " + descriptionArray[i]);
+            }   
         });
     });
 }
@@ -39,7 +44,7 @@ function disconnect() {
     setConnected(false);
     console.log("Disconnected");
     $("#communicate").empty(); // 자식 요소 제거
-    const mainContent = document.getElementById('main-content');
+    const mainContent = document.getElementById('main-container');
     mainContent.style.visibility = 'hidden';
 }
 
@@ -52,8 +57,14 @@ function sendMessage() {
 }
 
 function showMessage(message) {
+
     $("#communicate").append("<tr><td>" + message + "</td></tr>");
+    var table = $("#content-container");
+  
+    table.scrollTop(table.prop("scrollHeight"));;
+    
 }
+
 
 $(function () {
     $("form").on('submit', function (e) {
@@ -75,12 +86,12 @@ $(function () {
 /*
 document.getElementById('connect').addEventListener('click', function () {
     // 챗봇 이미지 클릭 시 실행되는 함수
-    document.getElementById('main-content').style.display = 'block';
+    document.getElementById('main-container').style.display = 'block';
 });
 
 document.getElementById('disconnect').addEventListener('click', function () {
     // 챗봇 이미지 클릭 시 실행되는 함수
-    document.getElementById('main-content').style.display = 'none';
+    document.getElementById('main-container').style.display = 'none';
 });
 */
 

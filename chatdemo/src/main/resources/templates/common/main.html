@@ -8,39 +8,50 @@
 </head>
 <body>
    
-
-	<div id="main-content" class="container">
-	    <div class="row">
-	        <div class="col-md-6">
-	            <form class="form-inline">
-	                <div class="form-group">
-	                    <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">연결해제
-	                    </button>
-	                </div>
-	            </form>
-	        </div>
-	        <div class="col-md-6">
-	            <form class="form-inline">
-	                <div class="form-group">
-	                    <label for="msg">문의사항</label>
-	                    <input type="text" id="msg" class="form-control" placeholder="내용을 입력하세요....">
-						<button id="send" class="sendButton" disabled type="submit">보내기</button>
-	                </div>
-	                
-	            </form>
-	        </div>
-	    </div>
-	    <div class="row">
-	        <div class="col-md-12">
-	            <table id="conversation" class="table table-striped">
-					<br>
-	                <tbody id="communicate">
-	                </tbody>
-	            </table>
-	        </div>
-	    </div>
+	<div id="main-container" class="container">
+		<div id="title-container">
+			<section id="title">
+				<div class="row">
+					<div class="col-md-6">
+						<form class="form-inline">
+							<div class="form-group">
+								<button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">연결해제
+								</button>
+							</div>
+						</form>
+					</div>
+					<div class="col-md-6">
+						<form class="form-inline">
+							<div class="form-group">
+								<label for="msg">문의사항</label>
+								<input type="text" id="msg" class="form-control" placeholder="내용을 입력하세요....">
+								<button id="send" class="sendButton" disabled type="submit">보내기</button>
+							</div>
+							
+						</form>
+					</div>
+				</div>
+			</section>
+		</div>
+		<hr>
+		<div id="content-container">
+			<section id="content">
+				<div class="row">
+					<div class="col-md-12">
+						<table id="conversation" class="table table-striped">
+							<br>
+							<tbody id="communicate">
+							</tbody>
+							<div id="scroll"></div>
+						</table>
+					</div>
+				</div>
+			</section>
+		</div>
 	</div>
-
+	
+	
+	   
 	<button id="connect" class="connectButton" type="submit"><img th:src="@{/images/챗봇.png}" alt=""></button>
 
 

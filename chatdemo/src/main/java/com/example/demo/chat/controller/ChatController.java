@@ -20,6 +20,8 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Controller
 public class ChatController {
 	
@@ -37,6 +39,8 @@ public class ChatController {
 
         String message =  getReqMessage(chatMessage);
         String encodeBase64String = makeSignature(message, secretKey);
+        String[] descriptionArray = null;
+        String jsonMessage = "";
 
         //api서버 접속 (서버 -> 서버 통신)		
         HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -70,12 +74,17 @@ public class ChatController {
             try {
                 JSONObject json = (JSONObject)jsonparser.parse(jsonString);
                 JSONArray bubblesArray = (JSONArray)json.get("bubbles");
-                System.out.println("bubblesArray : " + bubblesArray);
                 JSONObject bubbles = (JSONObject)bubblesArray.get(0);
                 JSONObject data = (JSONObject)bubbles.get("data");
+              
                 String description = "";
                 description = (String)data.get("description");
-                chatMessage = description;
+               
+                descriptionArray = ((String) data.get("description")).split("\n");
+             	chatMessage = description;
+             	ObjectMapper objectMapper = new ObjectMapper();
+             	jsonMessage = objectMapper.writeValueAsString(descriptionArray);
+             	
             } catch (Exception e) {
                 System.out.println("error");
                 e.printStackTrace();
@@ -85,7 +94,7 @@ public class ChatController {
         } else {  // 에러 발생
             chatMessage = con.getResponseMessage();
         }
-        return chatMessage;
+        return jsonMessage;
     }
 
     //보낼 메세지를 네이버에서 제공해준 암호화로 변경해주는 메소드

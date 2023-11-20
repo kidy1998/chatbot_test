@@ -2,7 +2,7 @@ body {
     background-color: #f5f5f5;
 }
 
-#main-content {
+#main-container {
     width: 50%;
     height: 400px;
     padding: 2em 3em;
@@ -12,7 +12,13 @@ body {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    overflow-y: scroll;
+   
+  
+}
+
+#content-container {
+    max-height: 300px; /* 원하는 최대 높이로 설정 */
+    overflow-y: auto; /* 세로 스크롤을 표시하도록 설정 */
 }
 
 
