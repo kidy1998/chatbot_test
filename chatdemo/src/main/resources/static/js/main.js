@@ -60,7 +60,6 @@ function showMessage(message) {
 
     $("#communicate").append("<tr><td>" + message + "</td></tr>");
     var table = $("#content-container");
-  
     table.scrollTop(table.prop("scrollHeight"));;
     
 }
